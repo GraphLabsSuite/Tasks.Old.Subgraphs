@@ -59,7 +59,6 @@ namespace GraphLabs.Tasks.Template
                 StackPanel.Children.Add(gv);
                 gv.UpdateLayout();
                 gv.Graph = (UndirectedGraph)g;
-                Debug.WriteLine("lol");
             }
         }
     }

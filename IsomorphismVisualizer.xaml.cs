@@ -30,16 +30,18 @@ namespace GraphLabs.Tasks.Template
         public IObservableGraph WorkspaceGraph
         {
             get { return (IObservableGraph)GetValue(WorkspaceGraphProperty); }
-            set { SetValue(WorkspaceGraphProperty, value); }
-            //get { return WorkspaceVisualizer.Graph; }
-            //set { WorkspaceVisualizer.Graph = value; }
+            set
+            {
+                UpdateLayout();
+                SetValue(WorkspaceGraphProperty, value);
+            }
         }
 
         private static void WorkspaceGraphChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             if (e.NewValue != null)
             {
-                ((IsomorphismVisualizer)d).BackgroundVisualizer.Graph = (IObservableGraph)e.NewValue;
+                ((IsomorphismVisualizer)d).WorkspaceVisualizer.Graph = (IObservableGraph)e.NewValue;
             }
         }
 
@@ -60,8 +62,6 @@ namespace GraphLabs.Tasks.Template
                 UpdateLayout();
                 SetValue(BackgroundGraphProperty, value);
             }
-            //get { return BackgroundGraph.Graph; }
-            //set { BackgroundGraph.Graph = value; }
         }
 
         private static void BackgroundGraphChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -93,7 +93,7 @@ namespace GraphLabs.Tasks.Template
                 if (point == default(Point))
                     return false;
                 var index = wsPoints.IndexOf(point);
-                vertexesOrder.Add((GraphLabs.Graphs.Vertex)wsGraph.Vertices[index]);
+                vertexesOrder.Add((Vertex)wsGraph.Vertices[index]);
             }
             for (var i = 0; i < bgGraph.VerticesCount; i++)
                 for (var j = 0; j < bgGraph.VerticesCount; j++)

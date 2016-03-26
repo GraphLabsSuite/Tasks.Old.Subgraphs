@@ -60,7 +60,6 @@
             <controls1:ToolBar Name="Phase1ToolBar"
                               Grid.Column="1"
                               Grid.Row="1"
-                              Grid.RowSpan="1"
                               VerticalAlignment="Stretch"
                               Background="SlateGray"
                               Visibility="{Binding Phase1ToolBarVisibility}"
@@ -68,7 +67,6 @@
             <controls1:ToolBar Name="Phase2ToolBar"
                               Grid.Column="1"
                               Grid.Row="1"
-                              Grid.RowSpan="1"
                               VerticalAlignment="Stretch"
                               Background="SlateGray"
                               Visibility="{Binding Phase2ToolBarVisibility}"
@@ -76,13 +74,14 @@
             <controls1:ToolBar Name="Phase3ToolBar"
                               Grid.Column="1"
                               Grid.Row="1"
-                              Grid.RowSpan="1"
                               VerticalAlignment="Stretch"
                               Background="SlateGray"
                               Visibility="{Binding Phase3ToolBarVisibility}"
                               Commands="{Binding Phase3ToolBarCommands}" />
 
-            <Grid Row="1" Column="2" Visibility="{Binding Phase3Visibility}">
+            <Grid Row="1"
+                  Column="2"
+                  Visibility="{Binding Phase3Visibility}">
                 <template:IsomorphismVisualizer
                     BackgroundGraph="{Binding BackgroundGraph}"
                     WorkspaceGraph="{Binding WorkspaceGraph}"/>
