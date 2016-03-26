@@ -207,6 +207,10 @@
     <Compile Include="HelpDialog.xaml.cs">
       <DependentUpon>HelpDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="IsomorphismGraphsVisualizer.cs" />
+    <Compile Include="IsomorphismVisualizer.xaml.cs">
+      <DependentUpon>IsomorphismVisualizer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Strings\Strings_RU.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -232,6 +236,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="HelpDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="IsomorphismVisualizer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
