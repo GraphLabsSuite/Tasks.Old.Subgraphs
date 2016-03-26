@@ -83,7 +83,7 @@
                               Commands="{Binding Phase3ToolBarCommands}" />
 
             <Grid Row="1" Column="2" Visibility="{Binding Phase3Visibility}">
-                <visualization1:IsomorphismVisualizer
+                <template:IsomorphismVisualizer
                     BackgroundGraph="{Binding BackgroundGraph}"
                     WorkspaceGraph="{Binding WorkspaceGraph}"/>
             </Grid>
