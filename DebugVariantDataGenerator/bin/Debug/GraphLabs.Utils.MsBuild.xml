@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GraphLabs.Utils.MsBuild</name>
+    </assembly>
+    <members>
+        <member name="T:GraphLabs.Utils.MsBuild.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:GraphLabs.Utils.MsBuild.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:GraphLabs.Utils.MsBuild.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:GraphLabs.Utils.MsBuild.Resources.TestPage">
+             <summary>
+               Looks up a localized string similar to &lt;!DOCTYPE html&gt;
+            &lt;html&gt;
+                &lt;head&gt;
+                    &lt;title&gt;Отладка модуля-задания&lt;/title&gt;
+                    &lt;meta charset=&quot;UTF-8&quot;/&gt;
+                    &lt;style&gt;
+                        body {position: relative;min-height: 100%;
+                            margin: 0 0 40px;padding: 20px 20px 20px 100px;
+                            font: 13px/20px &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif;
+                            color: #333;
+                            background-color: #eee;}
+                    &lt;/style&gt;
+                &lt;/head&gt;
+                &lt;body&gt;
+                    &lt;div&gt;
+                        &lt;h1&gt;Отладка модуля-задания&lt;/h1&gt;
+              [rest of string was truncated]&quot;;.
+             </summary>
+        </member>
+        <member name="T:GraphLabs.Utils.MsBuild.TaskDebugUploader">
+            <summary> Загрузчик модулей-заданий для отладки </summary>
+        </member>
+        <member name="P:GraphLabs.Utils.MsBuild.TaskDebugUploader.XapPath">
+            <summary> Путь к xap-файлу задания </summary>
+        </member>
+        <member name="P:GraphLabs.Utils.MsBuild.TaskDebugUploader.VariantDataPath">
+            <summary> Путь к бинарным данным варианта </summary>
+        </member>
+        <member name="P:GraphLabs.Utils.MsBuild.TaskDebugUploader.UploadServiceUri">
+            <summary> Путь к сервису загрузки </summary>
+        </member>
+        <member name="P:GraphLabs.Utils.MsBuild.TaskDebugUploader.LabUriFormat">
+            <summary> Путь к странице выполнения лабы </summary>
+            <remarks> Пример: http://glservice.svtz.ru:81/LabWorkExecution/Index?labId={0}&amp;labVarId={1} </remarks>
+        </member>
+        <member name="P:GraphLabs.Utils.MsBuild.TaskDebugUploader.OutputPagePath">
+            <summary> Путь к автогенерируемой странице </summary>
+        </member>
+        <member name="M:GraphLabs.Utils.MsBuild.TaskDebugUploader.Execute">
+            <summary> Выполняет задание </summary>
+        </member>
+    </members>
+</doc>
