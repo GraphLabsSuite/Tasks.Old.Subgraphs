@@ -264,6 +264,7 @@
     <Resource Include="Images\Vertexes.png" />
     <Resource Include="Images\thunder.png" />
     <Resource Include="Images\Subgraph.png" />
+    <Content Include="Debug\LabWorkDebug.htm" />
     <Content Include="ServiceReferences.ClientConfig" />
   </ItemGroup>
   <ItemGroup>
@@ -275,6 +276,7 @@
       <LastGenOutput>Strings_RU.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
@@ -283,6 +285,10 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <UsingTask TaskName="GraphLabs.Utils.MsBuild.TaskDebugUploader" AssemblyFile="..\packages\GraphLabs.Utils.MsBuild.1.4.2\lib\net452\GraphLabs.Utils.MsBuild.dll" />
+  <Target Name="AfterBuild">
+    <TaskDebugUploader Condition=" '$(Configuration)' == 'DebugWithSite' " XapPath="$(OutputPath)\$(XapFilename)" VariantDataPath="$(ProjectDir)\Debug\DebugVariantData.bin" UploadServiceUri="http://glservice.svtz.ru:8000/DebugTaskUploader/DebugTaskUploader.svc" LabUriFormat="http://glservice.svtz.ru:81/LabWorkExecution/Index?labId={0}&amp;labVarId={1}" OutputPagePath="$(ProjectDir)\Debug\LabWorkDebug.htm" />
+  </Target>
   <ProjectExtensions>
     <VisualStudio>
       <FlavorProperties GUID="{A1591282-1198-4647-A2B1-27E5FF5F6F3B}">
