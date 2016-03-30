@@ -73,11 +73,6 @@ namespace GraphLabs.Tasks.Template
             typeof(ObservableCollection<ToolBarCommandBase>),
             typeof(TaskTemplateViewModel),
             new PropertyMetadata(default(ObservableCollection<ToolBarCommandBase>)));
-        public static readonly DependencyProperty Phase3ToolBarCommandsProperty = DependencyProperty.Register(
-            ExpressionUtility.NameForMember((TaskTemplateViewModel m) => m.Phase3ToolBarCommands),
-            typeof(ObservableCollection<ToolBarCommandBase>),
-            typeof(TaskTemplateViewModel),
-            new PropertyMetadata(default(ObservableCollection<ToolBarCommandBase>)));
 
         /// <summary> Видимость тулбаров </summary>
         public static readonly DependencyProperty Phase1ToolBarVisibilityProperty =
@@ -92,12 +87,6 @@ namespace GraphLabs.Tasks.Template
             typeof(Visibility),
             typeof(TaskTemplateViewModel),
             new PropertyMetadata(Visibility.Collapsed));
-        public static readonly DependencyProperty Phase3ToolBarVisibilityProperty =
-            DependencyProperty.Register(
-            ExpressionUtility.NameForMember((TaskTemplateViewModel m) => m.Phase3ToolBarVisibility),
-            typeof(Visibility),
-            typeof(TaskTemplateViewModel),
-            new PropertyMetadata(Visibility.Collapsed));
 
         ///<summary> Видимость заданий </summary>
         public static readonly DependencyProperty Phase12VisibilityProperty =
@@ -106,12 +95,6 @@ namespace GraphLabs.Tasks.Template
             typeof(Visibility),
             typeof(TaskTemplateViewModel),
             new PropertyMetadata(Visibility.Visible));
-        public static readonly DependencyProperty Phase3VisibilityProperty =
-            DependencyProperty.Register(
-            ExpressionUtility.NameForMember((TaskTemplateViewModel m) => m.Phase3Visibility),
-            typeof(Visibility),
-            typeof(TaskTemplateViewModel),
-            new PropertyMetadata(Visibility.Collapsed));
 
         /// <summary> Выданный в задании граф </summary>
         public static readonly DependencyProperty GivenGraphProperty =
@@ -125,22 +108,6 @@ namespace GraphLabs.Tasks.Template
         public static readonly DependencyProperty CurrentGraphProperty =
             DependencyProperty.Register(
             ExpressionUtility.NameForMember((TaskTemplateViewModel m) => m.CurrentGraph),
-            typeof(IGraph),
-            typeof(TaskTemplateViewModel),
-            new PropertyMetadata(default(IGraph)));
-        
-        ///<summary> Фоновый граф для изоморфизма </summary>
-        public static readonly DependencyProperty BackgroundGraphProperty =
-            DependencyProperty.Register(
-            ExpressionUtility.NameForMember((TaskTemplateViewModel m) => m.BackgroundGraph),
-            typeof(IGraph),
-            typeof(TaskTemplateViewModel),
-            new PropertyMetadata(default(IGraph)));
-
-        ///<summary> Рабочий граф для изоморфизма </summary>
-        public static readonly DependencyProperty WorkspaceGraphProperty =
-            DependencyProperty.Register(
-            ExpressionUtility.NameForMember((TaskTemplateViewModel m) => m.WorkspaceGraph),
             typeof(IGraph),
             typeof(TaskTemplateViewModel),
             new PropertyMetadata(default(IGraph)));
@@ -198,11 +165,6 @@ namespace GraphLabs.Tasks.Template
             get { return (ObservableCollection<ToolBarCommandBase>)GetValue(Phase2ToolBarCommandsProperty); }
             set { SetValue(Phase2ToolBarCommandsProperty, value); }
         }
-        public ObservableCollection<ToolBarCommandBase> Phase3ToolBarCommands
-        {
-            get { return (ObservableCollection<ToolBarCommandBase>)GetValue(Phase3ToolBarCommandsProperty); }
-            set { SetValue(Phase3ToolBarCommandsProperty, value); }
-        }
 
         /// <summary> Видимость панелей инструментов </summary>
         public Visibility Phase1ToolBarVisibility
@@ -215,22 +177,12 @@ namespace GraphLabs.Tasks.Template
             get { return (Visibility)GetValue(Phase2ToolBarVisibilityProperty); }
             set { SetValue(Phase2ToolBarVisibilityProperty, value); }
         }
-        public Visibility Phase3ToolBarVisibility
-        {
-            get { return (Visibility)GetValue(Phase3ToolBarVisibilityProperty); }
-            set { SetValue(Phase3ToolBarVisibilityProperty, value); }
-        }
 
         ///<summary> Видимость заданий </summary>
         public Visibility Phase12Visibility
         {
             get { return (Visibility)GetValue(Phase12VisibilityProperty); }
             set { SetValue(Phase12VisibilityProperty, value); }
-        }
-        public Visibility Phase3Visibility
-        {
-            get { return (Visibility)GetValue(Phase3VisibilityProperty); }
-            set { SetValue(Phase3VisibilityProperty, value); }
         }
 
         /// <summary> Выданные в задании графы </summary>
@@ -245,20 +197,6 @@ namespace GraphLabs.Tasks.Template
         {
             get { return (IGraph)GetValue(CurrentGraphProperty); }
             set { SetValue(CurrentGraphProperty, value); }
-        }
-
-        /// <summary> Фоновый граф для изоморфизма </summary>
-        public IGraph BackgroundGraph
-        {
-            get { return (IGraph)GetValue(BackgroundGraphProperty); }
-            set { SetValue(BackgroundGraphProperty, value); }
-        }
-
-        /// <summary> Рабочий граф для изоморфизма </summary>
-        public IGraph WorkspaceGraph
-        {
-            get { return (IGraph)GetValue(WorkspaceGraphProperty); }
-            set { SetValue(WorkspaceGraphProperty, value); }
         }
 
         public String L1

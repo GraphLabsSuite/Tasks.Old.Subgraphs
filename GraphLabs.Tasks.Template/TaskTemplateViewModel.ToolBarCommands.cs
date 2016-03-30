@@ -343,14 +343,6 @@ namespace GraphLabs.Tasks.Template
                     if (GraphLib.Lib.Count > allSubgraphs.Count)
                     {
                         UserActionsManager.RegisterInfo(Strings.Strings_RU.stage2Done);
-                        Phase12Visibility = Visibility.Collapsed;
-                        Phase3Visibility = Visibility.Visible;
-                        Phase2ToolBarVisibility = Visibility.Collapsed;
-                        Phase3ToolBarVisibility = Visibility.Visible;
-                        BackgroundGraph = new UndirectedGraph(); // Нужно объявить граф, чтобы слой обновился
-                        WorkspaceGraph = GivenGraph;
-                        BackgroundGraph = GivenGraph;
-                        new HelpDialog(Strings.Strings_RU.stage3Help).Show();
                     }
                     else
                     {
@@ -362,40 +354,6 @@ namespace GraphLabs.Tasks.Template
             {
                 Image = new BitmapImage(GetImageUri("Check.png")),
                 Description = Strings.Strings_RU.stage2DoneButtonDisc
-            };
-            #endregion
-            #endregion
-
-            #region Третий этап
-            #region Справка
-            var phase3HelpCommand = new ToolBarInstantCommand(
-                () => new HelpDialog(Strings.Strings_RU.stage3Help).Show(),
-                () => _state == State.Nothing
-                )
-            {
-                Description = Strings.Strings_RU.buttonHelp,
-                Image = new BitmapImage(GetImageUri("Info.png"))
-            };
-            #endregion
-
-            #region Завершить этап
-            var phase3Command = new ToolBarInstantCommand(
-                () =>
-                {
-                    if (WorkspaceGraph.Vertices[0].Name != "True")
-                    {
-                        UserActionsManager.RegisterMistake(Strings.Strings_RU.stage3Mistake1, 10);
-                    }
-                    else
-                    {
-                        UserActionsManager.RegisterInfo(Strings.Strings_RU.stage3Done);
-                    }
-                },
-                () => _state == State.Nothing
-                )
-            {
-                Image = new BitmapImage(GetImageUri("Check.png")),
-                Description = Strings.Strings_RU.stage3DoneButtonDisc
             };
             #endregion
             #endregion
@@ -421,11 +379,6 @@ namespace GraphLabs.Tasks.Template
                 ,
                 thunderbolt2
                 #endif
-            };
-            Phase3ToolBarCommands = new ObservableCollection<ToolBarCommandBase>
-            {
-                phase3Command,
-                phase3HelpCommand
             };
         }
     }

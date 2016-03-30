@@ -169,7 +169,7 @@
     <comment>M</comment>
   </data>
   <data name="stage2Done" xml:space="preserve">
-    <value>Библиотека подграфов заполнена, переход к третьему этапу</value>
+    <value>Библиотека подграфов заполнена</value>
     <comment>M</comment>
   </data>
   <data name="stage2DoneButtonDisc" xml:space="preserve">
@@ -202,27 +202,6 @@
   </data>
   <data name="stage2Subgraph" xml:space="preserve">
     <value>Подграф добавлен в коллекцию</value>
-    <comment>M</comment>
-  </data>
-  <data name="stage3Done" xml:space="preserve">
-    <value>Третий этап завершён</value>
-    <comment>M</comment>
-  </data>
-  <data name="stage3DoneButtonDisc" xml:space="preserve">
-    <value>Завершить этап 3</value>
-  </data>
-  <data name="stage3Help" xml:space="preserve">
-    <value>Этап 3
-На завершающем этапе Вам необходимо найти изоморфизм для двух данных графов, то есть совместить их вершины таким образом, чтобы все дуги фонового графа были перекрыты дугам графа в рабочей области.
-
-Доступные инструменты:
-- Завершить этап 3
-- Справка
-
-Баллы снимаются при попытке завершить этап при неверно совмещённых графах.</value>
-  </data>
-  <data name="stage3Mistake1" xml:space="preserve">
-    <value>Вершины совмещены неверно</value>
     <comment>M</comment>
   </data>
   <data name="subgraph" xml:space="preserve">

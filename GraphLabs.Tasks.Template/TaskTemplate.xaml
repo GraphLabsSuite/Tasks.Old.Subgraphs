@@ -71,21 +71,6 @@
                               Background="SlateGray"
                               Visibility="{Binding Phase2ToolBarVisibility}"
                               Commands="{Binding Phase2ToolBarCommands}" />
-            <controls1:ToolBar Name="Phase3ToolBar"
-                              Grid.Column="1"
-                              Grid.Row="1"
-                              VerticalAlignment="Stretch"
-                              Background="SlateGray"
-                              Visibility="{Binding Phase3ToolBarVisibility}"
-                              Commands="{Binding Phase3ToolBarCommands}" />
-
-            <Grid Row="1"
-                  Column="2"
-                  Visibility="{Binding Phase3Visibility}">
-                <template:IsomorphismVisualizer
-                    BackgroundGraph="{Binding BackgroundGraph}"
-                    WorkspaceGraph="{Binding WorkspaceGraph}"/>
-            </Grid>
             <controls1:InformationBar ScoreColumnWidth="60" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2"
                                       DataContext="{Binding UserActionsManager}"/>
             <Grid

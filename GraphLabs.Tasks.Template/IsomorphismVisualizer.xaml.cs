@@ -26,6 +26,27 @@ namespace GraphLabs.Tasks.Template
                 typeof(IsomorphismVisualizer),
                 new PropertyMetadata(WorkspaceGraphChanged));
 
+        /// <summary> Видимость рабочего графа </summary>
+        public static DependencyProperty WorkspaceGraphVisibilityProperty = 
+            DependencyProperty.Register(
+                "WorkspaceGraphVisibility",
+                typeof(Visibility),
+                typeof(IsomorphismVisualizer),
+                new PropertyMetadata(default(Visibility)));
+
+        public Visibility WorkspaceGraphVisibility
+        {
+            get
+            {
+                return (Visibility)GetValue(VisibilityProperty);
+            }
+            set
+            {
+                SetValue(VisibilityProperty, value);
+                WorkspaceVisualizer.Visibility = value;
+            }
+        }
+
         /// <summary> Рабочий граф </summary>
         public IObservableGraph WorkspaceGraph
         {
