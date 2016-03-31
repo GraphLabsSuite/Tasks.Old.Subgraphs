@@ -13,7 +13,7 @@ namespace DebugVariantDataGenerator
     /// </summary>
     class Program
     {
-        public static byte[] GetSerializedGraph()
+        public static byte[] GetSerializedVariant()
         {
             var graph = DirectedGraph.CreateEmpty(7);
             graph.AddEdge(new DirectedEdge(graph.Vertices[0], graph.Vertices[5]));
@@ -27,12 +27,12 @@ namespace DebugVariantDataGenerator
             graph.AddEdge(new DirectedEdge(graph.Vertices[5], graph.Vertices[6]));
             graph.AddEdge(new DirectedEdge(graph.Vertices[6], graph.Vertices[4]));
 
-            return GraphSerializer.Serialize(graph);
+            return VariantSerializer.Serialize(new IGraph[]{graph});
         }
 
         static void Main(string[] args)
         {
-            File.WriteAllBytes(@"..\..\..\GraphLabs.Tasks.Template\Debug\DebugVariantData.bin", GetSerializedGraph());
+            File.WriteAllBytes(@"..\..\..\GraphLabs.Tasks.Template\Debug\DebugVariantData.bin", GetSerializedVariant());
         }
     }
 }

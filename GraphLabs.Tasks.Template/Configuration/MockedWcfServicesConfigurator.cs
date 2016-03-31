@@ -25,11 +25,14 @@ namespace GraphLabs.Tasks.Template.Configuration
             debugGraph.AddEdge(new UndirectedEdge(debugGraph.Vertices[3], debugGraph.Vertices[6]));
             debugGraph.AddEdge(new UndirectedEdge(debugGraph.Vertices[4], debugGraph.Vertices[5]));
             debugGraph.AddEdge(new UndirectedEdge(debugGraph.Vertices[4], debugGraph.Vertices[6]));
-            var serializedGraph = GraphSerializer.Serialize(debugGraph);
+            var serializedVariant = VariantSerializer.Serialize(new IGraph[]
+            {
+                debugGraph
+            });
 
             return new TaskVariantDto
             {
-                Data = serializedGraph,
+                Data = serializedVariant,
                 GeneratorVersion = "1.0",
                 Number = "Debug",
                 Version = 1

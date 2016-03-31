@@ -256,7 +256,8 @@ namespace GraphLabs.Tasks.Template
             // Мы вызваны из другого потока. Поэтому работаем с UI-элементами через Dispatcher.
             Dispatcher.BeginInvoke(() =>
             {
-                GivenGraph = GraphSerializer.Deserialize(e.Data);
+                var data = VariantSerializer.Deserialize(e.Data);
+                GivenGraph = data[0];
                 CurrentGraph = UndirectedGraph.CreateEmpty(GivenGraph.VerticesCount);
             });
 
