@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Linq;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Media.Imaging;
 using Castle.Core.Internal;
 using GraphLabs.CommonUI.Controls.ViewModels;
@@ -343,6 +340,7 @@ namespace GraphLabs.Tasks.Template
                     if (GraphLib.Lib.Count > allSubgraphs.Count)
                     {
                         UserActionsManager.RegisterInfo(Strings.Strings_RU.stage2Done);
+                        UserActionsManager.ReportThatTaskFinished();
                     }
                     else
                     {
