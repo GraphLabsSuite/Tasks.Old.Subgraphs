@@ -28,15 +28,13 @@ namespace GraphLabs.Tasks.Template
             {
                 if (Lib.Count > 1)
                 {
-                    var d = new Rectangle
+                    StackPanel.Children.Add(new Rectangle
                     {
                         Stroke = new SolidColorBrush(Colors.Transparent),
                         Fill = new SolidColorBrush(Color.FromArgb(255, 112, 128, 144)),
                         Margin = new Thickness(5, 0, 5, 0),
-                        Width = 1,
-                        Height = 100
-                    };
-                    StackPanel.Children.Add(d);
+                        Width = 1
+                    });
                 }
                 var label = new Label
                 {
@@ -49,8 +47,7 @@ namespace GraphLabs.Tasks.Template
 
                 var gv = new GraphVisualizer
                 {
-                    Height = 100,
-                    Width = 100,
+                    Width = StackPanel.ActualHeight,
                     HorizontalAlignment = HorizontalAlignment.Left,
                     VisualizationAlgorithm = VisualizationAlgorithm.Circle,
                     Foreground = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0)),

@@ -270,6 +270,7 @@
     <Resource Include="Images\thunder.png" />
     <Resource Include="Images\Subgraph.png" />
     <None Include="Debug\LabWorkDebug.htm" />
+    <Resource Include="Images\Collection.png" />
     <Content Include="ServiceReferences.ClientConfig" />
   </ItemGroup>
   <ItemGroup>

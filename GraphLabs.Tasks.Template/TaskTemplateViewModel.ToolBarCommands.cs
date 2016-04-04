@@ -293,7 +293,7 @@ namespace GraphLabs.Tasks.Template
                 () => _state == State.Nothing
                 )
             {
-                Image = new BitmapImage(GetImageUri("Subgraph.png")),
+                Image = new BitmapImage(GetImageUri("Collection.png")),
                 Description = Strings.Strings_RU.buttonCheckSubgraph
             };
             #endregion

@@ -81,12 +81,14 @@
                 Visibility="{Binding Phase12Visibility}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="5*" />
-                    <RowDefinition Height="127" />
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
-                <visualization1:GraphVisualizer x:Name="VisualizerCurrentGraph" 
+                <visualization1:GraphVisualizer
+                    x:Name="VisualizerCurrentGraph" 
             		Grid.Column="0" 
             		Grid.Row="0"
             		Background="{Binding Background, ElementName=LayoutRoot}"
@@ -100,10 +102,9 @@
                     DefaultVertexBackground ="GreenYellow"
                     DefaultEdgeStroke="GreenYellow"
             		IsAnimationSuspended="{Binding IsBusy, Converter={StaticResource NegateConverter}, ElementName=BusyIndicator}"
-            		MinHeight="100"
-            		MinWidth="100" Margin="0,0,365,0" BorderThickness="0" Loaded="Visualizer_Left_Loaded" Height="Auto"/>
+            		BorderThickness="0" Loaded="Visualizer_Left_Loaded"/>
                 <visualization1:GraphVisualizer x:Name="VisualizerGivingGraph"
-                	Grid.Column="0" 
+                	Grid.Column="1" 
                 	Grid.Row="0"
                 	Background="{Binding Background, ElementName=LayoutRoot}"
                 	IsMouseVerticesMovingEnabled="{Binding IsMouseVerticesMovingEnabled}"
@@ -115,11 +116,10 @@
                     DefaultVertexBackground="DodgerBlue"
                     DefaultEdgeStroke="DodgerBlue"
                 	IsAnimationSuspended="{Binding IsBusy, Converter={StaticResource NegateConverter}, ElementName=BusyIndicator}"
-                	MinHeight="100"
-                	MinWidth="100" Margin="365,0,0,0" BorderBrush="{x:Null}" FontFamily="Portable User Interface" OpacityMask="{x:Null}" BorderThickness="0" Grid.RowSpan="1" Height="Auto" Canvas.ZIndex="0"/>
-                <sdk:Label HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Content="{Binding L1}" UseLayoutRounding="True" Canvas.ZIndex="-1" Background="LightGray"/>
-                <sdk:Label HorizontalAlignment="Left" Margin="375,10,0,0" VerticalAlignment="Top" Content="{Binding L2}" UseLayoutRounding="True" Canvas.ZIndex="-1" Background="LightGray"/>
-                <template:GraphLib x:Name="GraphLib"  Grid.Row="1"/>
+                	BorderBrush="{x:Null}" FontFamily="Portable User Interface" OpacityMask="{x:Null}" BorderThickness="0" Canvas.ZIndex="0"/>
+                <sdk:Label HorizontalAlignment="Left" Grid.Column="0" Margin="10,10,0,0" VerticalAlignment="Top" Content="{Binding L1}" UseLayoutRounding="True" Canvas.ZIndex="-1" Background="LightGray"/>
+                <sdk:Label HorizontalAlignment="Left" Grid.Column="1" Margin="10,10,0,0" VerticalAlignment="Top" Content="{Binding L2}" UseLayoutRounding="True" Canvas.ZIndex="-1" Background="LightGray"/>
+                <template:GraphLib x:Name="GraphLib"  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"/>
             </Grid>
         </Grid>
     </toolkit:BusyIndicator>
