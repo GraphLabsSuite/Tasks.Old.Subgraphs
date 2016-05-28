@@ -18,7 +18,7 @@
           <StartWorkingDirectory>
           </StartWorkingDirectory>
           <ShowWebRefOnDebugPrompt>True</ShowWebRefOnDebugPrompt>
-          <OutOfBrowserProjectToDebug>GraphLabs.Tasks.Template</OutOfBrowserProjectToDebug>
+          <OutOfBrowserProjectToDebug>GraphLabs.Tasks.Subgraphs</OutOfBrowserProjectToDebug>
           <ShowRiaSvcsOnDebugPrompt>True</ShowRiaSvcsOnDebugPrompt>
         </SilverlightProjectProperties>
       </FlavorProperties>

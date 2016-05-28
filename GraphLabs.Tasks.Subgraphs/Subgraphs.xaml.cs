@@ -1,4 +1,5 @@
 ﻿using System;
+using GraphLabs.CommonUI.Controls;
 using GraphLabs.Graphs.UIComponents.Visualization;
 
 namespace GraphLabs.Tasks.Subgraphs
@@ -30,7 +31,7 @@ namespace GraphLabs.Tasks.Subgraphs
 
         private void Visualizer_Left_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            new HelpDialog(Strings.Strings_RU.stage1Help).Show();
+            new SimpleDialog("Справка", Strings.Strings_RU.stage1Help).Show();
         }
     }
 }
