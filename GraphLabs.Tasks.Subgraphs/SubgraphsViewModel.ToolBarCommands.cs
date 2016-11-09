@@ -16,7 +16,7 @@ namespace GraphLabs.Tasks.Subgraphs
     {
         #region Полезности
 
-        private const string ImageResourcesPath = @"/GraphLabs.Tasks.Template;component/Images/";
+        private const string ImageResourcesPath = @"/GraphLabs.Tasks.Subgraphs;component/Images/";
 
         private Uri GetImageUri(string imageFileName)
         {
@@ -343,7 +343,6 @@ namespace GraphLabs.Tasks.Subgraphs
                     {
                         UserActionsManager.RegisterInfo(Strings.Strings_RU.stage2Done);
                         UserActionsManager.ReportThatTaskFinished();
-						TransferToNextTask();
                     }
                     else
                     {

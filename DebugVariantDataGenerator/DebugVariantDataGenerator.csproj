@@ -51,12 +51,12 @@
       <HintPath>..\packages\GraphLabs.Common.Utils.1.2.0\lib\portable-net45+sl50+win+wpa81+wp80\GraphLabs.Common.Utils.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="GraphLabs.Graphs, Version=1.6.1.222, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\GraphLabs.Graphs.1.6.1\lib\portable-net45+sl50+win+wp80\GraphLabs.Graphs.dll</HintPath>
+    <Reference Include="GraphLabs.Graphs, Version=1.6.7.238, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\GraphLabs.Graphs.1.6.7\lib\portable-net45+sl50+win+wp80\GraphLabs.Graphs.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="GraphLabs.Utils, Version=1.6.1.222, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\GraphLabs.Utils.1.6.1\lib\portable-net45+sl50+win+wp80\GraphLabs.Utils.dll</HintPath>
+    <Reference Include="GraphLabs.Utils, Version=1.6.7.238, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\GraphLabs.Utils.1.6.7\lib\portable-net45+sl50+win+wp80\GraphLabs.Utils.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="GraphLabs.Utils.MsBuild, Version=1.6.1.222, Culture=neutral, processorArchitecture=MSIL">
