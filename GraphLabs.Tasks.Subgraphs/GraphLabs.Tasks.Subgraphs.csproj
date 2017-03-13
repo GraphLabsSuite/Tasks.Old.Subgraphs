@@ -210,6 +210,9 @@
     <Reference Include="System.Windows.Browser" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\AssemblyVersion.cs">
+      <Link>Properties\AssemblyVersion.cs</Link>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -255,7 +258,6 @@
     <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml" />
-    <None Include="Properties\AssemblyInfo.cs.template" />
     <None Include="Properties\InBrowserSettings.xml" />
     <Resource Include="Images\Arrow.png" />
     <Resource Include="Images\Check.png" />
@@ -301,8 +303,7 @@
     </PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PreBuildEvent>cd "$(SolutionDir)\$(ProjectName) "
-SubWCRev "." "Properties\AssemblyInfo.cs.template" "Properties\AssemblyInfo.cs"</PreBuildEvent>
+    <PreBuildEvent>cd "$(SolutionDir)"
+powershell "&amp; ""$(SolutionDir)\generateVersionInfo.ps1"""</PreBuildEvent>
   </PropertyGroup>
-  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
 </Project>
