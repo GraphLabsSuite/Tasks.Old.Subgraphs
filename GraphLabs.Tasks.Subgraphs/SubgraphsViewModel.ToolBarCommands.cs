@@ -287,13 +287,26 @@ namespace GraphLabs.Tasks.Subgraphs
                     UserActionsManager.RegisterInfo(Strings.Strings_RU.buttonVertexAdd);
                     var subgraph = true;
                     var unique = Unique((UndirectedGraph)CurrentGraph, GraphLib.Lib);
+                    String vs = "";
+                    String eds = "";
                     CurrentGraph.Vertices.ForEach(v1 =>
+                    {
+                        vs += v1.ToString() + "; ";
                         CurrentGraph.Vertices.ForEach(v2 =>
+                        {
+                            if ((CurrentGraph[v1, v2] != null) && ((Convert.ToInt32(v1.ToString()) < Convert.ToInt32(v2.ToString())))) eds += "(" + v1.ToString() + "," + v2.ToString() + "), ";
                             subgraph &= v1.Equals(v2) || (CurrentGraph[v1, v2] == null ^ GivenGraph[
-                                                                        GivenGraph.Vertices.Single(v1.Equals),
-                                                                        GivenGraph.Vertices.Single(v2.Equals)] != null)
-                    ));
-                    if (!subgraph)
+                                                                    GivenGraph.Vertices.Single(v1.Equals),
+                                                                    GivenGraph.Vertices.Single(v2.Equals)] != null);
+                        }
+                        );
+                    }
+                    );
+                    if (eds.Length == 0)
+                        UserActionsManager.RegisterInfo(Strings.Strings_RU.stage2Check + "({" + vs.Remove(vs.Length - 2) + "}, {пустое множество})");
+                    else
+                        UserActionsManager.RegisterInfo(Strings.Strings_RU.stage2Check + "({" + vs.Remove(vs.Length - 2) + "}, {" + eds.Remove(eds.Length - 2) + "})");
+            if (!subgraph)
                     {
                         UserActionsManager.RegisterMistake(Strings.Strings_RU.stage2Mistake1, 10);
                         return;
@@ -313,7 +326,7 @@ namespace GraphLabs.Tasks.Subgraphs
                         if (CurrentGraph[CurrentGraph.Vertices[i], CurrentGraph.Vertices[j]] != null)
                         {
                             newGraph.AddEdge(new UndirectedEdge(newGraph.Vertices[i], newGraph.Vertices[j]));
-                            UserActionsManager.RegisterInfo(CurrentGraph.Vertices[i].ToString()+j.ToString());
+                            //UserActionsManager.RegisterInfo(CurrentGraph.Vertices[i].ToString()+j.ToString());
                         }
                     UserActionsManager.RegisterInfo(Strings.Strings_RU.stage2Subgraph);
 

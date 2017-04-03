@@ -59,14 +59,8 @@ namespace GraphLabs.Tasks.Subgraphs
                     _graph.AddVertex(new Vertex(name));
                 if (_graph.Vertices.SingleOrDefault(v => v.Name == name) != null && cb.IsChecked == false)
                     _graph.RemoveVertex(_graph.Vertices.Single(v => v.Name == name));
+                DialogResult = true;
             });
-            // вывод выбранных вершин
-            VertexesAnswer = "";
-            _graph.Vertices.ForEach(v =>
-            {
-                VertexesAnswer += v.ToString() + "; ";
-            });
-            VertexesAnswer = VertexesAnswer.Remove(VertexesAnswer.Length - 2);
             
         }
     }

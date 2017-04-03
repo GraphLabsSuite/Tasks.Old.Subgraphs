@@ -88,7 +88,7 @@ namespace GraphLabs.Tasks.Subgraphs.Strings {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Подграфы. Задание 1. Добавление рёбер выключено.
+        ///   Ищет локализованную строку, похожую на Подграфы. Добавление рёбер выключено.
         /// </summary>
         internal static string buttonEdgesOff {
             get {
@@ -97,7 +97,7 @@ namespace GraphLabs.Tasks.Subgraphs.Strings {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Подграфы. Задание 1. Добавление рёбер включено.
+        ///   Ищет локализованную строку, похожую на Подграфы. Добавление рёбер включено.
         /// </summary>
         internal static string buttonEdgesOn {
             get {
@@ -218,6 +218,15 @@ namespace GraphLabs.Tasks.Subgraphs.Strings {
         internal static string stage1ThunderCall {
             get {
                 return ResourceManager.GetString("stage1ThunderCall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Подграфы. Этап 2. На проверку отправлен подграф:.
+        /// </summary>
+        internal static string stage2Check {
+            get {
+                return ResourceManager.GetString("stage2Check", resourceCulture);
             }
         }
         

@@ -127,11 +127,11 @@
     <value>Добавление рёбер</value>
   </data>
   <data name="buttonEdgesOff" xml:space="preserve">
-    <value>Подграфы. Задание 1. Добавление рёбер выключено</value>
+    <value>Подграфы. Добавление рёбер выключено</value>
     <comment>M</comment>
   </data>
   <data name="buttonEdgesOn" xml:space="preserve">
-    <value>Подграфы. Задание 1. Добавление рёбер включено</value>
+    <value>Подграфы. Добавление рёбер включено</value>
     <comment>M</comment>
   </data>
   <data name="buttonHelp" xml:space="preserve">
@@ -179,6 +179,9 @@
   </data>
   <data name="stage1ThunderCall" xml:space="preserve">
     <value>Подграфы. Этап 1. Вызов "молнии"</value>
+  </data>
+  <data name="stage2Check" xml:space="preserve">
+    <value>Подграфы. Этап 2. На проверку отправлен подграф:</value>
   </data>
   <data name="stage2Done" xml:space="preserve">
     <value>Библиотека подграфов заполнена</value>
