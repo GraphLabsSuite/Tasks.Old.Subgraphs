@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using System.Windows.Media.Imaging;
@@ -8,12 +9,18 @@ using GraphLabs.Common;
 using GraphLabs.CommonUI.Controls;
 using GraphLabs.CommonUI.Controls.ViewModels;
 using GraphLabs.Graphs;
+using GraphLabs.Tasks.Subgraphs.Strings;
 using GraphLabs.Utils;
+using System;
+using System.Linq;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace GraphLabs.Tasks.Subgraphs
 {
     public partial class SubgraphsViewModel
     {
+        
         #region Полезности
 
         private const string ImageResourcesPath = @"/GraphLabs.Tasks.Subgraphs;component/Images/";
@@ -102,7 +109,7 @@ namespace GraphLabs.Tasks.Subgraphs
         }
 
         #endregion
-
+        
         private void InitToolBarCommands()
         {
             #region Первый этап
@@ -110,6 +117,7 @@ namespace GraphLabs.Tasks.Subgraphs
             var phase1AddEdgeCommand = new ToolBarToggleCommand(
                 () =>
                 {
+                    // добавление ребер включено
                     IsMouseVerticesMovingEnabled = false;
                     IsEgesAddingEnabled = true;
                     _state = State.EdgesAdding;
@@ -117,6 +125,7 @@ namespace GraphLabs.Tasks.Subgraphs
                 },
                 () =>
                 {
+                    // добавление ребер отключено
                     IsMouseVerticesMovingEnabled = true;
                     IsEgesAddingEnabled = false;
                     _state = State.Nothing;
@@ -138,16 +147,25 @@ namespace GraphLabs.Tasks.Subgraphs
                 () =>
                 {
                     var solve = true;
+                    string stage1answer = "";
                     CurrentGraph.Vertices.ForEach(v1 =>
                         CurrentGraph.Vertices.ForEach(v2 =>
-                            solve = solve && (v1.Equals(v2) || (CurrentGraph[v1, v2] == null ^
-                                              GivenGraph[
-                                                  GivenGraph.Vertices.Single(v1.Equals),
-                                                  GivenGraph.Vertices.Single(v2.Equals)] == null
-                            ))
-                    ));
+                            {
+                                if (CurrentGraph[v1, v2] != null && ((Convert.ToInt32(v1.ToString()) < Convert.ToInt32(v2.ToString()))))
+                                    stage1answer += "(" + v1.ToString() + "; " + v2.ToString() + "), ";
+                                solve = solve && (v1.Equals(v2) || (CurrentGraph[v1, v2] == null ^
+                                                                    GivenGraph[
+                                                                        GivenGraph.Vertices.Single(v1.Equals),
+                                                                        GivenGraph.Vertices.Single(v2.Equals)] == null
+                            ));
+                            }
+                        ));
+                    stage1answer.Remove(stage1answer.Length - 2);
+                    // информация об отправленном на проверку графе
+                    UserActionsManager.RegisterInfo(Strings.Strings_RU.stage1Check + stage1answer);
                     if (solve)
                     {
+                        // информация о завершении этапа
                         UserActionsManager.RegisterInfo(Strings.Strings_RU.stage1Done);
                         GivenGraph = CurrentGraph;
                         CurrentGraph = new UndirectedGraph();
@@ -174,6 +192,8 @@ namespace GraphLabs.Tasks.Subgraphs
             var phase1HelpCommand = new ToolBarInstantCommand(
                 () =>
                 {
+                    // вызов справки
+                    UserActionsManager.RegisterInfo(Strings.Strings_RU.stage1HelpCall);
                     new SimpleDialog("Справка", Strings.Strings_RU.stage1Help).Show();
                 },
                 () => _state == State.Nothing
@@ -188,6 +208,8 @@ namespace GraphLabs.Tasks.Subgraphs
             var thunderbolt1 = new ToolBarInstantCommand(
                 () =>
                 {
+                    // вызов молнии
+                    UserActionsManager.RegisterInfo(Strings.Strings_RU.stage1ThunderCall);
                     CurrentGraph.Vertices.ForEach(v1 =>
                         CurrentGraph.Vertices.ForEach(v2 =>
                         {
@@ -213,6 +235,7 @@ namespace GraphLabs.Tasks.Subgraphs
 
             #region Второй этап
             #region Добавление вершин
+            
             var vertexDialogCommand = new ToolBarInstantCommand(
                 () =>
                 {
@@ -261,9 +284,9 @@ namespace GraphLabs.Tasks.Subgraphs
             var subgraphCommand = new ToolBarInstantCommand(
                 () =>
                 {
+                    UserActionsManager.RegisterInfo(Strings.Strings_RU.buttonVertexAdd);
                     var subgraph = true;
                     var unique = Unique((UndirectedGraph)CurrentGraph, GraphLib.Lib);
-
                     CurrentGraph.Vertices.ForEach(v1 =>
                         CurrentGraph.Vertices.ForEach(v2 =>
                             subgraph &= v1.Equals(v2) || (CurrentGraph[v1, v2] == null ^ GivenGraph[
@@ -287,9 +310,13 @@ namespace GraphLabs.Tasks.Subgraphs
                     var newGraph = UndirectedGraph.CreateEmpty(CurrentGraph.VerticesCount);
                     for (var i = 0; i < CurrentGraph.VerticesCount; i++)
                         for (var j = i + 1; j < CurrentGraph.VerticesCount; j++)
-                            if (CurrentGraph[CurrentGraph.Vertices[i], CurrentGraph.Vertices[j]] != null)
-                                newGraph.AddEdge(new UndirectedEdge(newGraph.Vertices[i], newGraph.Vertices[j]));
+                        if (CurrentGraph[CurrentGraph.Vertices[i], CurrentGraph.Vertices[j]] != null)
+                        {
+                            newGraph.AddEdge(new UndirectedEdge(newGraph.Vertices[i], newGraph.Vertices[j]));
+                            UserActionsManager.RegisterInfo(CurrentGraph.Vertices[i].ToString()+j.ToString());
+                        }
                     UserActionsManager.RegisterInfo(Strings.Strings_RU.stage2Subgraph);
+
                     GraphLib.Lib.Add(newGraph);
                 },
                 () => _state == State.Nothing

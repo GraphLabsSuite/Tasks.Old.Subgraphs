@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using GraphLabs.CommonUI.Controls;
 using GraphLabs.Graphs.UIComponents.Visualization;
 
@@ -21,6 +22,7 @@ namespace GraphLabs.Tasks.Subgraphs
             if (handler != null)
             {
                 handler(this, e);
+               
             }
         }
 

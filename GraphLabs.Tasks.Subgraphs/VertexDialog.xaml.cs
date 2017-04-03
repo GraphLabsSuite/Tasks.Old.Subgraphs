@@ -1,38 +1,51 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using GraphLabs.Graphs;
 using GraphLabs.Utils;
+using GraphLabs.Common;
+using GraphLabs.CommonUI;
+using GraphLabs.CommonUI.Controls;
+using GraphLabs.CommonUI.Controls.ViewModels;
 
 namespace GraphLabs.Tasks.Subgraphs
 {
     public partial class VertexDialog
+        
     {
         private UndirectedGraph _graph;
-
+        public String VertexesAnswer;
         public VertexDialog(UndirectedGraph currentGraph, ReadOnlyCollection<IVertex> v2)
         {
             InitializeComponent();
-
             Title = Strings.Strings_RU.vertexDialogTitle;
             OkButton.Content = Strings.Strings_RU.buttonOk;
             CancelButton.Content = Strings.Strings_RU.buttonCancel;
             Info.Text = Strings.Strings_RU.vertexDialogInfo;
-
             v2.ForEach(v =>
             {
                 _graph = currentGraph;
-                var cb = new CheckBox {Content = Strings.Strings_RU.vertex + " [" + v.ToString() + "]"};
+                var cb = new CheckBox { Content = Strings.Strings_RU.vertex + " [" + v.ToString() + "]" };
                 if (currentGraph.Vertices.SingleOrDefault(s => s.Equals(v)) != null)
+                {
                     cb.IsChecked = true;
+                    Debug.WriteLine(cb.ToString());
+                };
+                    
                 VertexList.Children.Add(cb);
-            });
+            }
+            );
+            
         }
 
         private void Cancel_Button_Click(object sender, RoutedEventArgs e)
         {
             DialogResult = false;
+
         }
 
         private void Ok_Button_Click(object sender, RoutedEventArgs e)
@@ -47,7 +60,14 @@ namespace GraphLabs.Tasks.Subgraphs
                 if (_graph.Vertices.SingleOrDefault(v => v.Name == name) != null && cb.IsChecked == false)
                     _graph.RemoveVertex(_graph.Vertices.Single(v => v.Name == name));
             });
-            DialogResult = true;
+            // вывод выбранных вершин
+            VertexesAnswer = "";
+            _graph.Vertices.ForEach(v =>
+            {
+                VertexesAnswer += v.ToString() + "; ";
+            });
+            VertexesAnswer = VertexesAnswer.Remove(VertexesAnswer.Length - 2);
+            
         }
     }
 }
