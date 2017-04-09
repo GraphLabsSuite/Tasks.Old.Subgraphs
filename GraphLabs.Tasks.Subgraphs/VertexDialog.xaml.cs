@@ -58,10 +58,9 @@ namespace GraphLabs.Tasks.Subgraphs
                 if (_graph.Vertices.SingleOrDefault(v => v.Name == name) == null && cb.IsChecked == true)
                     _graph.AddVertex(new Vertex(name));
                 if (_graph.Vertices.SingleOrDefault(v => v.Name == name) != null && cb.IsChecked == false)
-                    _graph.RemoveVertex(_graph.Vertices.Single(v => v.Name == name));
-                DialogResult = true;
+                    _graph.RemoveVertex(_graph.Vertices.Single(v => v.Name == name));     
             });
-            
+            DialogResult = true;
         }
     }
 }

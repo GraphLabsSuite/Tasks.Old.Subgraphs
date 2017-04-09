@@ -124,7 +124,7 @@ namespace GraphLabs.Tasks.Subgraphs.Strings {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Добавление вершин включено.
+        ///   Ищет локализованную строку, похожую на Подграфы. Этап 2. Добавление вершин включено.
         /// </summary>
         internal static string buttonVertexAdd {
             get {
@@ -204,7 +204,7 @@ namespace GraphLabs.Tasks.Subgraphs.Strings {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Неверное дополнение.
+        ///   Ищет локализованную строку, похожую на Подграфы. Этап 1. Результат проверки: неверное дополнение.
         /// </summary>
         internal static string stage1Mistake1 {
             get {
@@ -268,7 +268,16 @@ namespace GraphLabs.Tasks.Subgraphs.Strings {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Неверный подграф.
+        ///   Ищет локализованную строку, похожую на Подграфы. Этап 2. Вызвана справка.
+        /// </summary>
+        internal static string stage2HelpCall {
+            get {
+                return ResourceManager.GetString("stage2HelpCall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Подграфы. Этап 2. Результат проверки: неверный подграф.
         /// </summary>
         internal static string stage2Mistake1 {
             get {
@@ -277,7 +286,7 @@ namespace GraphLabs.Tasks.Subgraphs.Strings {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Подграф уже имеется в коллекции.
+        ///   Ищет локализованную строку, похожую на Подграфы. Этап 2. Результат проверки: подграф уже имеется в коллекции.
         /// </summary>
         internal static string stage2Mistake2 {
             get {
@@ -286,7 +295,7 @@ namespace GraphLabs.Tasks.Subgraphs.Strings {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Имеются неучтённые подграфы.
+        ///   Ищет локализованную строку, похожую на Подграфы. Этап 2. Результат проверки: имеются неучтённые подграфы.
         /// </summary>
         internal static string stage2Mistake3 {
             get {
@@ -295,11 +304,20 @@ namespace GraphLabs.Tasks.Subgraphs.Strings {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Подграф добавлен в коллекцию.
+        ///   Ищет локализованную строку, похожую на Подграфы. Этап 2. Результат проверки: подграф добавлен в коллекцию.
         /// </summary>
         internal static string stage2Subgraph {
             get {
                 return ResourceManager.GetString("stage2Subgraph", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Подграфы. Этап 2. Вызов &quot;молнии&quot;.
+        /// </summary>
+        internal static string stage2ThunderCall {
+            get {
+                return ResourceManager.GetString("stage2ThunderCall", resourceCulture);
             }
         }
         

@@ -109,7 +109,7 @@ namespace GraphLabs.Tasks.Subgraphs
         }
 
         #endregion
-        
+
         private void InitToolBarCommands()
         {
             #region Первый этап
@@ -147,12 +147,18 @@ namespace GraphLabs.Tasks.Subgraphs
                 () =>
                 {
                     var solve = true;
-                    string stage1answer = "";
+                    // stage1answer - содержит информацию о ребрах графа, отправляемого на проверку
+                    var stage1answer = "";
+                    // добавляем все ребра
+                    CurrentGraph.Edges.ForEach(edge =>
+                    {
+                        stage1answer += "(" + edge.Vertex1.ToString() + "; " + edge.Vertex2.ToString() + "), ";
+                    });
+                    // информация об отправленном на проверку графе
+                    UserActionsManager.RegisterInfo(Strings.Strings_RU.stage1Check + "{" + stage1answer.Remove(stage1answer.Length - 2) + "}");
                     CurrentGraph.Vertices.ForEach(v1 =>
                         CurrentGraph.Vertices.ForEach(v2 =>
                             {
-                                if (CurrentGraph[v1, v2] != null && ((Convert.ToInt32(v1.ToString()) < Convert.ToInt32(v2.ToString()))))
-                                    stage1answer += "(" + v1.ToString() + "; " + v2.ToString() + "), ";
                                 solve = solve && (v1.Equals(v2) || (CurrentGraph[v1, v2] == null ^
                                                                     GivenGraph[
                                                                         GivenGraph.Vertices.Single(v1.Equals),
@@ -160,9 +166,6 @@ namespace GraphLabs.Tasks.Subgraphs
                             ));
                             }
                         ));
-                    stage1answer.Remove(stage1answer.Length - 2);
-                    // информация об отправленном на проверку графе
-                    UserActionsManager.RegisterInfo(Strings.Strings_RU.stage1Check + stage1answer);
                     if (solve)
                     {
                         // информация о завершении этапа
@@ -175,7 +178,7 @@ namespace GraphLabs.Tasks.Subgraphs
                         L1 = Strings.Strings_RU.subgraph;
 
                         FindAllSubgraphs(GivenGraph, 0, GivenGraph.Vertices.ToList(), allSubgraphs);
-                        
+
                         new SimpleDialog("Справка", Strings.Strings_RU.stage2Help).Show();
                     }
                     else UserActionsManager.RegisterMistake(Strings.Strings_RU.stage1Mistake1, 10);
@@ -235,11 +238,11 @@ namespace GraphLabs.Tasks.Subgraphs
 
             #region Второй этап
             #region Добавление вершин
-            
+
             var vertexDialogCommand = new ToolBarInstantCommand(
                 () =>
                 {
-                    var dialog = new VertexDialog((UndirectedGraph) CurrentGraph, GivenGraph.Vertices);
+                    var dialog = new VertexDialog((UndirectedGraph)CurrentGraph, GivenGraph.Vertices);
                     dialog.Show();
                     dialog.Closed += (sender, args) =>
                     {
@@ -284,17 +287,19 @@ namespace GraphLabs.Tasks.Subgraphs
             var subgraphCommand = new ToolBarInstantCommand(
                 () =>
                 {
-                    UserActionsManager.RegisterInfo(Strings.Strings_RU.buttonVertexAdd);
                     var subgraph = true;
                     var unique = Unique((UndirectedGraph)CurrentGraph, GraphLib.Lib);
-                    String vs = "";
-                    String eds = "";
+                    var subVertexes = ""; //строка, содержащая вершины подграфа
+                    var subEdges = ""; //строка, содержащая ребра подграфа
+                    CurrentGraph.Edges.ForEach(edge =>
+                    {
+                        subEdges += "(" + edge.Vertex1.ToString() + "; " + edge.Vertex2.ToString() + "), ";
+                    });
                     CurrentGraph.Vertices.ForEach(v1 =>
                     {
-                        vs += v1.ToString() + "; ";
+                        subVertexes += v1.ToString() + "; ";
                         CurrentGraph.Vertices.ForEach(v2 =>
                         {
-                            if ((CurrentGraph[v1, v2] != null) && ((Convert.ToInt32(v1.ToString()) < Convert.ToInt32(v2.ToString())))) eds += "(" + v1.ToString() + "," + v2.ToString() + "), ";
                             subgraph &= v1.Equals(v2) || (CurrentGraph[v1, v2] == null ^ GivenGraph[
                                                                     GivenGraph.Vertices.Single(v1.Equals),
                                                                     GivenGraph.Vertices.Single(v2.Equals)] != null);
@@ -302,11 +307,14 @@ namespace GraphLabs.Tasks.Subgraphs
                         );
                     }
                     );
-                    if (eds.Length == 0)
-                        UserActionsManager.RegisterInfo(Strings.Strings_RU.stage2Check + "({" + vs.Remove(vs.Length - 2) + "}, {пустое множество})");
+                    // попытка добавить пустой граф
+                    if (CurrentGraph.VerticesCount == 0) return;
+                    // в зависимости от наличия ребер в добавляемом подграфе
+                    if (subEdges.Length > 2)
+                        UserActionsManager.RegisterInfo(Strings.Strings_RU.stage2Check + "({" + subVertexes.Remove(subVertexes.Length - 2) + "}, {" + subEdges.Remove(subEdges.Length - 2) + "})");
                     else
-                        UserActionsManager.RegisterInfo(Strings.Strings_RU.stage2Check + "({" + vs.Remove(vs.Length - 2) + "}, {" + eds.Remove(eds.Length - 2) + "})");
-            if (!subgraph)
+                        UserActionsManager.RegisterInfo(Strings.Strings_RU.stage2Check + "({" + subVertexes.Remove(subVertexes.Length - 2) + "}, {пустое множество})");
+                    if (!subgraph)
                     {
                         UserActionsManager.RegisterMistake(Strings.Strings_RU.stage2Mistake1, 10);
                         return;
@@ -318,16 +326,13 @@ namespace GraphLabs.Tasks.Subgraphs
                         return;
                     }
 
-                    if (CurrentGraph.VerticesCount == 0) return;
-
                     var newGraph = UndirectedGraph.CreateEmpty(CurrentGraph.VerticesCount);
                     for (var i = 0; i < CurrentGraph.VerticesCount; i++)
                         for (var j = i + 1; j < CurrentGraph.VerticesCount; j++)
-                        if (CurrentGraph[CurrentGraph.Vertices[i], CurrentGraph.Vertices[j]] != null)
-                        {
-                            newGraph.AddEdge(new UndirectedEdge(newGraph.Vertices[i], newGraph.Vertices[j]));
-                            //UserActionsManager.RegisterInfo(CurrentGraph.Vertices[i].ToString()+j.ToString());
-                        }
+                            if (CurrentGraph[CurrentGraph.Vertices[i], CurrentGraph.Vertices[j]] != null)
+                            {
+                                newGraph.AddEdge(new UndirectedEdge(newGraph.Vertices[i], newGraph.Vertices[j]));
+                            }
                     UserActionsManager.RegisterInfo(Strings.Strings_RU.stage2Subgraph);
 
                     GraphLib.Lib.Add(newGraph);
@@ -342,7 +347,12 @@ namespace GraphLabs.Tasks.Subgraphs
 
             #region Справка
             var phase2HelpCommand = new ToolBarInstantCommand(
-                () => new SimpleDialog("Справка", Strings.Strings_RU.stage2Help).Show(),
+                () =>
+                {
+                    // вызов справки
+                    UserActionsManager.RegisterInfo(Strings.Strings_RU.stage2HelpCall);
+                    new SimpleDialog("Справка", Strings.Strings_RU.stage2Help).Show();
+                },
                 () => _state == State.Nothing
                 )
             {
@@ -355,6 +365,8 @@ namespace GraphLabs.Tasks.Subgraphs
             var thunderbolt2 = new ToolBarInstantCommand(
                 () =>
                 {
+                    // вызов молнии
+                    UserActionsManager.RegisterInfo(Strings.Strings_RU.stage2ThunderCall);
                     allSubgraphs.ForEach(s =>
                     {
                         if (Unique(s, GraphLib.Lib))

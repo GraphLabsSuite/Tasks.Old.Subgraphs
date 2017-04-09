@@ -22,7 +22,6 @@ namespace GraphLabs.Tasks.Subgraphs
             if (handler != null)
             {
                 handler(this, e);
-               
             }
         }
 
