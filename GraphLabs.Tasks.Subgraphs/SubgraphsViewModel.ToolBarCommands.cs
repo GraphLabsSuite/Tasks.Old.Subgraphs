@@ -120,7 +120,7 @@ namespace GraphLabs.Tasks.Subgraphs
                     IsMouseVerticesMovingEnabled = false;
                     IsEgesAddingEnabled = true;
                     _state = State.EdgesAdding;
-                    UserActionsManager.RegisterInfo(Strings.Strings_RU.buttonEdgesOn);
+                    //UserActionsManager.RegisterInfo(Strings.Strings_RU.buttonEdgesOn);
                 },
                 () =>
                 {
@@ -128,7 +128,7 @@ namespace GraphLabs.Tasks.Subgraphs
                     IsMouseVerticesMovingEnabled = true;
                     IsEgesAddingEnabled = false;
                     _state = State.Nothing;
-                    UserActionsManager.RegisterInfo(Strings.Strings_RU.buttonEdgesOff);
+                    //UserActionsManager.RegisterInfo(Strings.Strings_RU.buttonEdgesOff);
                 },
                 () => _state == State.Nothing,
                 () => true
@@ -146,17 +146,9 @@ namespace GraphLabs.Tasks.Subgraphs
                 () =>
                 {
                     var solve = true;
-                    //var GP = new GraphLabs.Graphs.
-                    // stage1answer - содержит информацию о ребрах графа, отправляемого на проверку
-                    var stage1answer = "";
-                    // добавляем все ребра
-                    CurrentGraph.Edges.ForEach(edge =>
-                    {
-                        stage1answer += "(" + edge.Vertex1.ToString() + "; " + edge.Vertex2.ToString() + "), ";
-                    });
-
+                    var gp = new GraphPrinter();
                     // информация об отправленном на проверку графе
-                    UserActionsManager.RegisterInfo(Strings.Strings_RU.stage1Check);
+                    UserActionsManager.RegisterInfo(Strings.Strings_RU.stage1Check + gp.GraphToString(CurrentGraph));
                     CurrentGraph.Vertices.ForEach(v1 =>
                         CurrentGraph.Vertices.ForEach(v2 =>
                             {
@@ -197,7 +189,7 @@ namespace GraphLabs.Tasks.Subgraphs
                 () =>
                 {
                     // вызов справки
-                    UserActionsManager.RegisterInfo(Strings.Strings_RU.stage1HelpCall);
+                    //UserActionsManager.RegisterInfo(Strings.Strings_RU.stage1HelpCall);
                     new SimpleDialog("Справка", Strings.Strings_RU.stage1Help).Show();
                 },
                 () => _state == State.Nothing
@@ -266,14 +258,14 @@ namespace GraphLabs.Tasks.Subgraphs
                     IsMouseVerticesMovingEnabled = false;
                     IsEgesAddingEnabled = true;
                     _state = State.EdgesAdding;
-                    UserActionsManager.RegisterInfo(Strings.Strings_RU.buttonEdgesOn);
+                    //UserActionsManager.RegisterInfo(Strings.Strings_RU.buttonEdgesOn);
                 },
                 () =>
                 {
                     IsMouseVerticesMovingEnabled = true;
                     IsEgesAddingEnabled = false;
                     _state = State.Nothing;
-                    UserActionsManager.RegisterInfo(Strings.Strings_RU.buttonEdgesOff);
+                    ///UserActionsManager.RegisterInfo(Strings.Strings_RU.buttonEdgesOff);
                 },
                 () => _state == State.Nothing,
                 () => true
@@ -290,15 +282,11 @@ namespace GraphLabs.Tasks.Subgraphs
                 {
                     var subgraph = true;
                     var unique = Unique((UndirectedGraph)CurrentGraph, GraphLib.Lib);
-                    var subVertexes = ""; //строка, содержащая вершины подграфа
-                    var subEdges = ""; //строка, содержащая ребра подграфа
-                    CurrentGraph.Edges.ForEach(edge =>
-                    {
-                        subEdges += "(" + edge.Vertex1.ToString() + "; " + edge.Vertex2.ToString() + "), ";
-                    });
+                    var gp = new GraphPrinter();
+                    // отправляемый на проверку граф
+                    UserActionsManager.RegisterInfo(Strings.Strings_RU.stage2Check + gp.GraphToString(CurrentGraph));
                     CurrentGraph.Vertices.ForEach(v1 =>
                     {
-                        subVertexes += v1.ToString() + "; ";
                         CurrentGraph.Vertices.ForEach(v2 =>
                         {
                             subgraph &= v1.Equals(v2) || (CurrentGraph[v1, v2] == null ^ GivenGraph[
@@ -310,11 +298,6 @@ namespace GraphLabs.Tasks.Subgraphs
                     );
                     // попытка добавить пустой граф
                     if (CurrentGraph.VerticesCount == 0) return;
-                    // в зависимости от наличия ребер в добавляемом подграфе
-                    if (subEdges.Length > 2)
-                        UserActionsManager.RegisterInfo(Strings.Strings_RU.stage2Check + "({" + subVertexes.Remove(subVertexes.Length - 2) + "}, {" + subEdges.Remove(subEdges.Length - 2) + "})");
-                    else
-                        UserActionsManager.RegisterInfo(Strings.Strings_RU.stage2Check + "({" + subVertexes.Remove(subVertexes.Length - 2) + "}, {пустое множество})");
                     if (!subgraph)
                     {
                         UserActionsManager.RegisterMistake(Strings.Strings_RU.stage2Mistake1, 10);
@@ -351,7 +334,7 @@ namespace GraphLabs.Tasks.Subgraphs
                 () =>
                 {
                     // вызов справки
-                    UserActionsManager.RegisterInfo(Strings.Strings_RU.stage2HelpCall);
+                    //UserActionsManager.RegisterInfo(Strings.Strings_RU.stage2HelpCall);
                     new SimpleDialog("Справка", Strings.Strings_RU.stage2Help).Show();
                 },
                 () => _state == State.Nothing
