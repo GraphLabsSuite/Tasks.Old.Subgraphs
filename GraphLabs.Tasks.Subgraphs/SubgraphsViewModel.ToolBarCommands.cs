@@ -4,17 +4,16 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using Castle.Components.DictionaryAdapter;
 using GraphLabs.Common;
 using GraphLabs.CommonUI.Controls;
 using GraphLabs.CommonUI.Controls.ViewModels;
 using GraphLabs.Graphs;
 using GraphLabs.Tasks.Subgraphs.Strings;
+using GraphLabs.Graphs;
 using GraphLabs.Utils;
-using System;
-using System.Linq;
-using System.Collections;
-using System.Collections.Generic;
 
 namespace GraphLabs.Tasks.Subgraphs
 {
@@ -147,6 +146,7 @@ namespace GraphLabs.Tasks.Subgraphs
                 () =>
                 {
                     var solve = true;
+                    //var GP = new GraphLabs.Graphs.
                     // stage1answer - содержит информацию о ребрах графа, отправляемого на проверку
                     var stage1answer = "";
                     // добавляем все ребра
@@ -154,8 +154,9 @@ namespace GraphLabs.Tasks.Subgraphs
                     {
                         stage1answer += "(" + edge.Vertex1.ToString() + "; " + edge.Vertex2.ToString() + "), ";
                     });
+
                     // информация об отправленном на проверку графе
-                    UserActionsManager.RegisterInfo(Strings.Strings_RU.stage1Check + "{" + stage1answer.Remove(stage1answer.Length - 2) + "}");
+                    UserActionsManager.RegisterInfo(Strings.Strings_RU.stage1Check);
                     CurrentGraph.Vertices.ForEach(v1 =>
                         CurrentGraph.Vertices.ForEach(v2 =>
                             {
