@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -21,7 +22,7 @@ namespace GraphLabs.Tasks.Subgraphs
     {
         
         #region Полезности
-
+        
         private const string ImageResourcesPath = @"/GraphLabs.Tasks.Subgraphs;component/Images/";
 
         private Uri GetImageUri(string imageFileName)
@@ -116,19 +117,15 @@ namespace GraphLabs.Tasks.Subgraphs
             var phase1AddEdgeCommand = new ToolBarToggleCommand(
                 () =>
                 {
-                    // добавление ребер включено
                     IsMouseVerticesMovingEnabled = false;
                     IsEgesAddingEnabled = true;
                     _state = State.EdgesAdding;
-                    //UserActionsManager.RegisterInfo(Strings.Strings_RU.buttonEdgesOn);
                 },
                 () =>
                 {
-                    // добавление ребер отключено
                     IsMouseVerticesMovingEnabled = true;
                     IsEgesAddingEnabled = false;
                     _state = State.Nothing;
-                    //UserActionsManager.RegisterInfo(Strings.Strings_RU.buttonEdgesOff);
                 },
                 () => _state == State.Nothing,
                 () => true
@@ -147,7 +144,6 @@ namespace GraphLabs.Tasks.Subgraphs
                 {
                     var solve = true;
                     var gp = new GraphPrinter();
-                    // информация об отправленном на проверку графе
                     UserActionsManager.RegisterInfo(Strings.Strings_RU.stage1Check + gp.GraphToString(CurrentGraph));
                     CurrentGraph.Vertices.ForEach(v1 =>
                         CurrentGraph.Vertices.ForEach(v2 =>
@@ -161,7 +157,6 @@ namespace GraphLabs.Tasks.Subgraphs
                         ));
                     if (solve)
                     {
-                        // информация о завершении этапа
                         UserActionsManager.RegisterInfo(Strings.Strings_RU.stage1Done);
                         GivenGraph = CurrentGraph;
                         CurrentGraph = new UndirectedGraph();
@@ -188,8 +183,6 @@ namespace GraphLabs.Tasks.Subgraphs
             var phase1HelpCommand = new ToolBarInstantCommand(
                 () =>
                 {
-                    // вызов справки
-                    //UserActionsManager.RegisterInfo(Strings.Strings_RU.stage1HelpCall);
                     new SimpleDialog("Справка", Strings.Strings_RU.stage1Help).Show();
                 },
                 () => _state == State.Nothing
@@ -204,7 +197,6 @@ namespace GraphLabs.Tasks.Subgraphs
             var thunderbolt1 = new ToolBarInstantCommand(
                 () =>
                 {
-                    // вызов молнии
                     UserActionsManager.RegisterInfo(Strings.Strings_RU.stage1ThunderCall);
                     CurrentGraph.Vertices.ForEach(v1 =>
                         CurrentGraph.Vertices.ForEach(v2 =>
@@ -258,14 +250,12 @@ namespace GraphLabs.Tasks.Subgraphs
                     IsMouseVerticesMovingEnabled = false;
                     IsEgesAddingEnabled = true;
                     _state = State.EdgesAdding;
-                    //UserActionsManager.RegisterInfo(Strings.Strings_RU.buttonEdgesOn);
                 },
                 () =>
                 {
                     IsMouseVerticesMovingEnabled = true;
                     IsEgesAddingEnabled = false;
                     _state = State.Nothing;
-                    ///UserActionsManager.RegisterInfo(Strings.Strings_RU.buttonEdgesOff);
                 },
                 () => _state == State.Nothing,
                 () => true
@@ -283,7 +273,6 @@ namespace GraphLabs.Tasks.Subgraphs
                     var subgraph = true;
                     var unique = Unique((UndirectedGraph)CurrentGraph, GraphLib.Lib);
                     var gp = new GraphPrinter();
-                    // отправляемый на проверку граф
                     UserActionsManager.RegisterInfo(Strings.Strings_RU.stage2Check + gp.GraphToString(CurrentGraph));
                     CurrentGraph.Vertices.ForEach(v1 =>
                     {
@@ -296,7 +285,6 @@ namespace GraphLabs.Tasks.Subgraphs
                         );
                     }
                     );
-                    // попытка добавить пустой граф
                     if (CurrentGraph.VerticesCount == 0) return;
                     if (!subgraph)
                     {
@@ -333,8 +321,6 @@ namespace GraphLabs.Tasks.Subgraphs
             var phase2HelpCommand = new ToolBarInstantCommand(
                 () =>
                 {
-                    // вызов справки
-                    //UserActionsManager.RegisterInfo(Strings.Strings_RU.stage2HelpCall);
                     new SimpleDialog("Справка", Strings.Strings_RU.stage2Help).Show();
                 },
                 () => _state == State.Nothing
@@ -349,7 +335,6 @@ namespace GraphLabs.Tasks.Subgraphs
             var thunderbolt2 = new ToolBarInstantCommand(
                 () =>
                 {
-                    // вызов молнии
                     UserActionsManager.RegisterInfo(Strings.Strings_RU.stage2ThunderCall);
                     allSubgraphs.ForEach(s =>
                     {

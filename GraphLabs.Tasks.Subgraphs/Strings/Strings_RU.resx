@@ -184,7 +184,7 @@
     <value>Подграфы. Этап 2. На проверку отправлен подграф:</value>
   </data>
   <data name="stage2Done" xml:space="preserve">
-    <value>Библиотека подграфов заполнена</value>
+    <value>Подграфы. Этап 2. Результат проверки: библиотека подграфов заполнена</value>
     <comment>M</comment>
   </data>
   <data name="stage2DoneButtonDisc" xml:space="preserve">
