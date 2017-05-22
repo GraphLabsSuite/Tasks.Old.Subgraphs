@@ -127,11 +127,11 @@
     <value>Добавление рёбер</value>
   </data>
   <data name="buttonEdgesOff" xml:space="preserve">
-    <value>Добавление рёбер выключено</value>
+    <value>Подграфы. Добавление рёбер выключено</value>
     <comment>M</comment>
   </data>
   <data name="buttonEdgesOn" xml:space="preserve">
-    <value>Добавление рёбер включено</value>
+    <value>Подграфы. Добавление рёбер включено</value>
     <comment>M</comment>
   </data>
   <data name="buttonHelp" xml:space="preserve">
@@ -140,14 +140,20 @@
   <data name="buttonOk" xml:space="preserve">
     <value>Применить</value>
   </data>
+  <data name="buttonVertexAdd" xml:space="preserve">
+    <value>Подграфы. Этап 2. Добавление вершин включено</value>
+  </data>
   <data name="buttonVertexDialog" xml:space="preserve">
     <value>Изменить набор вершин</value>
   </data>
   <data name="labelComplement" xml:space="preserve">
     <value>Дополнение</value>
   </data>
+  <data name="stage1Check" xml:space="preserve">
+    <value>Подграфы. Этап 1. На проверку отправлен граф: </value>
+  </data>
   <data name="stage1Done" xml:space="preserve">
-    <value>Дополнение получено, переход ко второму этапу</value>
+    <value>Подграфы. Этап 1. Дополнение получено, переход ко второму этапу</value>
     <comment>M</comment>
   </data>
   <data name="stage1DoneButtonDisc" xml:space="preserve">
@@ -164,12 +170,21 @@
 
 Баллы снимаются при попытке завершить этап при неверно построенном дополнении.</value>
   </data>
+  <data name="stage1HelpCall" xml:space="preserve">
+    <value>Подграфы. Этап 1. Вызвана справка</value>
+  </data>
   <data name="stage1Mistake1" xml:space="preserve">
-    <value>Неверное дополнение</value>
+    <value>Подграфы. Этап 1. Результат проверки: неверное дополнение</value>
     <comment>M</comment>
   </data>
+  <data name="stage1ThunderCall" xml:space="preserve">
+    <value>Подграфы. Этап 1. Вызов "молнии"</value>
+  </data>
+  <data name="stage2Check" xml:space="preserve">
+    <value>Подграфы. Этап 2. На проверку отправлен подграф:</value>
+  </data>
   <data name="stage2Done" xml:space="preserve">
-    <value>Библиотека подграфов заполнена</value>
+    <value>Подграфы. Этап 2. Результат проверки: библиотека подграфов заполнена</value>
     <comment>M</comment>
   </data>
   <data name="stage2DoneButtonDisc" xml:space="preserve">
@@ -188,21 +203,27 @@
 
 Баллы снимаются при попытке добавить в библиотеку граф, не являющийся подграфом или подграф, изоморфный которому уже содержится в библиотеке, а также при попытке завершить этап при не до конца заполненной библиотеке подграфов.</value>
   </data>
+  <data name="stage2HelpCall" xml:space="preserve">
+    <value>Подграфы. Этап 2. Вызвана справка</value>
+  </data>
   <data name="stage2Mistake1" xml:space="preserve">
-    <value>Неверный подграф</value>
+    <value>Подграфы. Этап 2. Результат проверки: неверный подграф</value>
     <comment>M</comment>
   </data>
   <data name="stage2Mistake2" xml:space="preserve">
-    <value>Подграф уже имеется в коллекции</value>
+    <value>Подграфы. Этап 2. Результат проверки: подграф уже имеется в коллекции</value>
     <comment>M</comment>
   </data>
   <data name="stage2Mistake3" xml:space="preserve">
-    <value>Имеются неучтённые подграфы</value>
+    <value>Подграфы. Этап 2. Результат проверки: имеются неучтённые подграфы</value>
     <comment>M</comment>
   </data>
   <data name="stage2Subgraph" xml:space="preserve">
-    <value>Подграф добавлен в коллекцию</value>
+    <value>Подграфы. Этап 2. Результат проверки: подграф добавлен в коллекцию</value>
     <comment>M</comment>
+  </data>
+  <data name="stage2ThunderCall" xml:space="preserve">
+    <value>Подграфы. Этап 2. Вызов "молнии"</value>
   </data>
   <data name="subgraph" xml:space="preserve">
     <value>Подграф</value>
@@ -212,6 +233,9 @@
   </data>
   <data name="vertexDialogInfo" xml:space="preserve">
     <value>Выберите вершины, входящие в подграф</value>
+  </data>
+  <data name="vertexDialogResult" xml:space="preserve">
+    <value>Были выбраны вершины: </value>
   </data>
   <data name="vertexDialogTitle" xml:space="preserve">
     <value>Добавление вершин</value>
