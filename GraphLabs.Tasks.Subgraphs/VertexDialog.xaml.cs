@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
@@ -7,10 +6,6 @@ using System.Windows;
 using System.Windows.Controls;
 using GraphLabs.Graphs;
 using GraphLabs.Utils;
-using GraphLabs.Common;
-using GraphLabs.CommonUI;
-using GraphLabs.CommonUI.Controls;
-using GraphLabs.CommonUI.Controls.ViewModels;
 
 namespace GraphLabs.Tasks.Subgraphs
 {
@@ -18,7 +13,7 @@ namespace GraphLabs.Tasks.Subgraphs
         
     {
         private UndirectedGraph _graph;
-        public String VertexesAnswer;
+        public string VerticesAnswer;
         public VertexDialog(UndirectedGraph currentGraph, ReadOnlyCollection<IVertex> v2)
         {
             InitializeComponent();
